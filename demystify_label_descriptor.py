@@ -1,3 +1,9 @@
+'''
+Code from Chris Beaumont's article Python Descriptor Demystified
+https://nbviewer.jupyter.org/urls/gist.github.com/ChrisBeaumont/5758381/raw/descriptor_writeup.ipynb
+'''
+
+
 class Descriptor(object):
     
     def __init__(self, label):
@@ -17,5 +23,5 @@ class Foo(list):
     y = Descriptor('y')
     
 f = Foo()
-f.x = 5        # <===== Foo.Descriptor.__set__(f, 5)
+f.x = 5        # <===== Foo.Descriptor.__set__(f, 5) in concept
 print(f.x)

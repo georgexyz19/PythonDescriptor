@@ -1,3 +1,9 @@
+'''
+Code from Chris Beaumont's article Python Descriptor Demystified
+https://nbviewer.jupyter.org/urls/gist.github.com/ChrisBeaumont/5758381/raw/descriptor_writeup.ipynb
+'''
+
+
 from weakref import WeakKeyDictionary
 
 class NonNegative(object):
@@ -44,7 +50,7 @@ m = Movie('Casablanca', 97, 102, 964000, 1300000)
 print(m.budget)  # calls Movie.budget.__get__(m, Movie)   <====
 print(m.__dict__)
 
-m.rating = 100  # calls Movie.rating.__set__(m, 100)
+m.rating = 100  # In concept calls Movie.rating.__set__(m, 100), not exactly
 
 try:
     m.rating = -1   # calls Movie.rating.__set__(m, -1)

@@ -1,6 +1,9 @@
 from weakref import WeakKeyDictionary
 
 '''
+Code example on this webpage
+https://www.blog.pythonlibrary.org/2016/06/10/python-201-what-are-descriptors/
+
 A weak reference to an object is not enough to keep the object alive: when the only remaining 
 references to a referent are weak references, garbage collection is free to destroy the referent 
 and reuse its memory for something else. However, until the object is actually destroyed the weak 
@@ -23,7 +26,7 @@ class Drinker:
     def __get__(self, instance_obj, objtype):  # objtype still not used here
         return self.age.get(instance_obj, self.req_age)
  
-    def __set__(self, instance, new_age):  # What is this instance ? a Person instance
+    def __set__(self, instance, new_age):  # What is this instance -> a Person instance p
         if new_age < 21:
             msg = '{name} is too young to legally imbibe'
             raise Exception(msg.format(name=instance.name))
@@ -36,7 +39,7 @@ class Drinker:
  
  
 class Person:
-    drinker_age = Drinker()   # class level descriptor
+    drinker_age = Drinker()   # class level
  
     def __init__(self, name, age):
         self.name = name
@@ -45,5 +48,13 @@ class Person:
 if __name__ == '__main__' :
     p_Miguel = Person('Miguel', 30)
     print('Miguel\'s age is {}'.format(p_Miguel.drinker_age))
-    p_Miguel.drinker_age = 32	# call Person.drinker_age.__set__(p_Miguel, 32)
+    
+    p_Miguel.drinker_age = 32	
+    print('Miguel\'s age is {}'.format(p_Miguel.drinker_age))
+    
+    # this does not work Person.drinker_age.__set__(...) 
+    # because Person.drinker_age automatically calls __get__(...)
+    Person.__dict__['drinker_age'].__set__(p_Miguel, 34)
+    print('Miguel\'s age is {}'.format(p_Miguel.drinker_age))
+    
     p_Niki = Person('Niki', 13)

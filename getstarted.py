@@ -1,7 +1,10 @@
+'''
+Code example on this webpage
+https://www.blog.pythonlibrary.org/2016/06/10/python-201-what-are-descriptors/
+'''
+
+
 class MyDescriptor():
-    """
-    A simple demo descriptor
-    """
     def __init__(self, initial_value=None, name='my_var'):
         self.var_name = name
         self.value = initial_value

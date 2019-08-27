@@ -1,3 +1,9 @@
+'''
+Code from Chris Beaumont's article Python Descriptor Demystified
+https://nbviewer.jupyter.org/urls/gist.github.com/ChrisBeaumont/5758381/raw/descriptor_writeup.ipynb
+'''
+
+
 class Movie(object):
     def __init__(self, title, rating, runtime, budget, gross):
         self._budget = None
