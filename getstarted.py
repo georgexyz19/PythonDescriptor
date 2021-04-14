@@ -1,6 +1,8 @@
 '''
 Code example on this webpage
 https://www.blog.pythonlibrary.org/2016/06/10/python-201-what-are-descriptors/
+
+Revised to show d.desc on 4/14/2021
 '''
 
 
@@ -18,13 +20,21 @@ class MyDescriptor():
         print(msg.format(name=self.var_name, value=value))
         self.value = value
  
+
 class MyClass():
     desc = MyDescriptor(initial_value='Mike', name='desc')
     normal = 10
  
+
 if __name__ == '__main__':
     c = MyClass()
-    print(c.desc)
-    print(c.normal)
+    print('c.desc is ', c.desc)
+    d = MyClass()               # added for testing
+    print('c.normal is ', c.normal)
+    print('d.desc is ', d.desc)
+
+    print('Setting c.desc to 100')
     c.desc = 100
-    print(c.desc)
+    print('c.desc is ', c.desc)
+    print('d.desc is ', d.desc)  # this is 100
+
